@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		15F257F29807249726293D50 /* Pods_Tumblr_Feed_Project_IOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A87FA59D2851AAD7D8EF5C4 /* Pods_Tumblr_Feed_Project_IOSUITests.framework */; };
 		867E3D352149E3A3006FBA56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867E3D342149E3A3006FBA56 /* AppDelegate.swift */; };
-		867E3D372149E3A3006FBA56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867E3D362149E3A3006FBA56 /* ViewController.swift */; };
 		867E3D3A2149E3A3006FBA56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 867E3D382149E3A3006FBA56 /* Main.storyboard */; };
 		867E3D3C2149E3A4006FBA56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 867E3D3B2149E3A4006FBA56 /* Assets.xcassets */; };
 		867E3D3F2149E3A4006FBA56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 867E3D3D2149E3A4006FBA56 /* LaunchScreen.storyboard */; };
 		867E3D4A2149E3A4006FBA56 /* Tumblr_Feed_Project_IOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867E3D492149E3A4006FBA56 /* Tumblr_Feed_Project_IOSTests.swift */; };
 		867E3D552149E3A4006FBA56 /* Tumblr_Feed_Project_IOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867E3D542149E3A4006FBA56 /* Tumblr_Feed_Project_IOSUITests.swift */; };
+		867E3D632149E7FB006FBA56 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867E3D622149E7FB006FBA56 /* PhotosViewController.swift */; };
+		867E3D652149F012006FBA56 /* Tumblr Logos in Resources */ = {isa = PBXBuildFile; fileRef = 867E3D642149F012006FBA56 /* Tumblr Logos */; };
 		9605E96CB0F36F0510B40B89 /* Pods_Tumblr_Feed_Project_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47D507F9210B96371A4C249 /* Pods_Tumblr_Feed_Project_IOS.framework */; };
 		E20F30A10A664D27441A3153 /* Pods_Tumblr_Feed_Project_IOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F76F7A660A5BD7547D0988 /* Pods_Tumblr_Feed_Project_IOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -43,7 +44,6 @@
 		7E4CB5B3983F877A4DE3835B /* Pods-Tumblr_Feed_Project_IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tumblr_Feed_Project_IOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tumblr_Feed_Project_IOS/Pods-Tumblr_Feed_Project_IOS.release.xcconfig"; sourceTree = "<group>"; };
 		867E3D312149E3A3006FBA56 /* Tumblr_Feed_Project_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tumblr_Feed_Project_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		867E3D342149E3A3006FBA56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		867E3D362149E3A3006FBA56 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		867E3D392149E3A3006FBA56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		867E3D3B2149E3A4006FBA56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		867E3D3E2149E3A4006FBA56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +54,8 @@
 		867E3D502149E3A4006FBA56 /* Tumblr_Feed_Project_IOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tumblr_Feed_Project_IOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		867E3D542149E3A4006FBA56 /* Tumblr_Feed_Project_IOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tumblr_Feed_Project_IOSUITests.swift; sourceTree = "<group>"; };
 		867E3D562149E3A4006FBA56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		867E3D622149E7FB006FBA56 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		867E3D642149F012006FBA56 /* Tumblr Logos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Tumblr Logos"; sourceTree = "<group>"; };
 		8D1870359E3E96D29B0D803F /* Pods-Tumblr_Feed_Project_IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tumblr_Feed_Project_IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tumblr_Feed_Project_IOS/Pods-Tumblr_Feed_Project_IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A47D507F9210B96371A4C249 /* Pods_Tumblr_Feed_Project_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tumblr_Feed_Project_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC91A2BCF75B56F11877AC2E /* Pods-Tumblr_Feed_Project_IOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tumblr_Feed_Project_IOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tumblr_Feed_Project_IOSTests/Pods-Tumblr_Feed_Project_IOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,12 +129,13 @@
 		867E3D332149E3A3006FBA56 /* Tumblr_Feed_Project_IOS */ = {
 			isa = PBXGroup;
 			children = (
+				867E3D642149F012006FBA56 /* Tumblr Logos */,
 				867E3D342149E3A3006FBA56 /* AppDelegate.swift */,
-				867E3D362149E3A3006FBA56 /* ViewController.swift */,
 				867E3D382149E3A3006FBA56 /* Main.storyboard */,
 				867E3D3B2149E3A4006FBA56 /* Assets.xcassets */,
 				867E3D3D2149E3A4006FBA56 /* LaunchScreen.storyboard */,
 				867E3D402149E3A4006FBA56 /* Info.plist */,
+				867E3D622149E7FB006FBA56 /* PhotosViewController.swift */,
 			);
 			path = Tumblr_Feed_Project_IOS;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			files = (
 				867E3D3F2149E3A4006FBA56 /* LaunchScreen.storyboard in Resources */,
 				867E3D3C2149E3A4006FBA56 /* Assets.xcassets in Resources */,
+				867E3D652149F012006FBA56 /* Tumblr Logos in Resources */,
 				867E3D3A2149E3A3006FBA56 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,15 +305,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Tumblr_Feed_Project_IOSUITests-checkManifestLockResult.txt",
 			);
@@ -323,8 +323,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Tumblr_Feed_Project_IOS/Pods-Tumblr_Feed_Project_IOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
@@ -333,8 +331,6 @@
 				"${BUILT_PRODUCTS_DIR}/OAuthSwiftAlamofire/OAuthSwiftAlamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
@@ -351,15 +347,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Tumblr_Feed_Project_IOS-checkManifestLockResult.txt",
 			);
@@ -373,15 +365,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Tumblr_Feed_Project_IOSTests-checkManifestLockResult.txt",
 			);
@@ -397,7 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				867E3D372149E3A3006FBA56 /* ViewController.swift in Sources */,
+				867E3D632149E7FB006FBA56 /* PhotosViewController.swift in Sources */,
 				867E3D352149E3A3006FBA56 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
