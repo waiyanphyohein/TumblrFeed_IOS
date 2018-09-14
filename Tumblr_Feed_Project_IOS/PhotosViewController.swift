@@ -15,6 +15,11 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // AFNetworking extension to UIImageView that allows
+        // specifying a URL for the image
+        // Swift 3 should use URL instead of NSURL
+        
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -41,7 +46,7 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
                 // Get posts and store in posts property
                 let responseDictionary = dataDictionary["response"] as! [String: Any]
                 self.posts = responseDictionary["posts"] as! [[String: Any]]
-                
+                print(self.posts);
                 // Reload table view after network request data returns
                 self.tableView.reloadData()
                 
@@ -63,9 +68,11 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "This is row \(indexPath.row)"
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell;
+        let myImageUrlString = ("https://i.imgur.com/tGbaZCY.jpg") as String
+        let URLImage = URL(string:myImageUrlString)!
+        cell.PhotoDescription.text = "This is row \(indexPath.row)"
+        cell.TumblrImage.af_setImage(withURL: URLImage)
         return cell
     }
     
