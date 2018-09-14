@@ -6,10 +6,8 @@ target 'Tumblr_Feed_Project_IOS' do
   use_frameworks!
 
   # Pods for Tumblr_Feed_Project_IOS
+  pod 'Alamofire', '~>4.4'
   pod 'AlamofireImage'
-  pod 'OAuthSwift', '~> 1.1.0'
-  pod 'OAuthSwiftAlamofire'	
-
   target 'Tumblr_Feed_Project_IOSTests' do
     inherit! :search_paths
     # Pods for testing
