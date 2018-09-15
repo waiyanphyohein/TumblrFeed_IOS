@@ -17,13 +17,16 @@ class DetailViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var photoDescription: UILabel!
     @IBOutlet weak var imageDisplay: UIImageView!
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.imageDisplay.setImageWith(URL(string: postURLLink)!)
-        let removeP = imageDescriptionDisplay.replacingOccurrences(of: "<p>", with: "")
+        
+        
+        self.imageDisplay.setImageWith(URL(string: self.postURLLink)!)
+        let removeP = self.imageDescriptionDisplay.replacingOccurrences(of: "<p>", with: "")
         let removeSP = removeP.replacingOccurrences(of: "</p>", with: "")
         self.photoDescription.text = removeSP.replacingOccurrences(of: "<br/>", with: "\n")
-        captionTitle.title = (self.titleSection.replacingOccurrences(of: "-", with: " "))
+        self.captionTitle.title = (self.titleSection.replacingOccurrences(of: "-", with: " "))
         // Do any additional setup after loading the view.
+        super.viewDidLoad()
+        
     }
 
 

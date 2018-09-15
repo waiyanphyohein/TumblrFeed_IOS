@@ -30,7 +30,10 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // create an OK action
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            // handle response here.
+            func terminate(){
+                
+            }
+            exit(1);
         }
         // add the OK action to the alert controller
         alertController.addAction(OKAction)
@@ -63,16 +66,13 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
         let url = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")!
         self.url = url
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        session.configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        session.configuration.requestCachePolicy = .returnCacheDataElseLoad
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print(error.localizedDescription)
                 self.alertController.message = error.localizedDescription;
                 self.present(self.alertController, animated: true) {
-                    func terminate(){
-                        
-                    }
-                    exit(1);
+
                 }
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
@@ -99,6 +99,13 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
+    func performSegueToReturnBack()  {
+        if let nav = self.navigationController {
+            nav.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
@@ -124,6 +131,7 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
         let smallImageRequest = URLRequest(url: URL(string: postLowURL)!)
         let largeImageRequest = URLRequest(url: URL(string: postURL)!)
         
+
         cell.photoDescription.text = summary
 //        cell.postImages.setImageWith(URL(string: postLowURL)!)
         cell.postImages.setImageWith(
@@ -133,10 +141,10 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
                 
                 // smallImageResponse will be nil if the smallImage is already available
                 // in cache (might want to do something smarter in that case).
-                cell.postImages.alpha = 0.0
+                cell.postImages.alpha = 0.1
                 cell.postImages.image = smallImage;
                 
-                UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                UIView.animate(withDuration: 0.5, animations: { () -> Void in
                     
                     cell.postImages.alpha = 1.0
                     
@@ -166,17 +174,14 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // Get the index path from the cell that was tapped
-        let indexPath = tableView.indexPathForSelectedRow
-        // Get the Row of the Index Path and set as index
-        let index = indexPath?.row
+    
         // Get in touch with the DetailViewController
         let detailViewController = segue.destination as! DetailViewController
         // Pass on the data to the Detail ViewController by setting it's indexPathRow value
-        detailViewController.index = index
         detailViewController.imageDescriptionDisplay = self.imageDescriptionDisplay
         detailViewController.postURLLink = self.postURLLink
         detailViewController.titleSection = self.slug
+        
     }
     func loadMoreData() {
         
@@ -220,6 +225,7 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
                 
                 // Code to load more results
                 loadMoreData()
+                
             }
         }
     }
