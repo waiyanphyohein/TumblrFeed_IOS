@@ -12,7 +12,7 @@ The following **required** user stories are complete:
 
 The following **stretch** user stories are implemented:
 
-- [ ] User sees an alert when there's a networking error (+1pt)
+- [x] User sees an alert when there's a networking error (+1pt)
 - [x] While poster is being fetched, user see's a placeholder image (+1pt)
 - [x] User sees image transition for images coming from network, not when it is loaded from cache (+1pt)
 - [x] Customize the selection effect of the cell (+1pt)
@@ -24,13 +24,14 @@ The following **additional** user stories are implemented:
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1. Rearranging UI Design to make it seems clear.
-2.
+2. Managing Local Cache efficienty. Currently there is a little bit of problem with loading time for those with poor internet connection.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='Lab1WalkThrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='Lab1WalkThroughError.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
