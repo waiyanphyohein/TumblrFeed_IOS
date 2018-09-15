@@ -1,5 +1,6 @@
 import UIKit
 import AlamofireImage
+import AFNetworking
 
 class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -7,6 +8,10 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // An array of Dictionaries to store data from network requests
     var posts: [[String: Any]] = []
+    
+    var postURLLink: String!;
+    var imageDescriptionDisplay: String!;
+    var slug: String!;
     
     // Global refresh control attribute for other functions to access
     var refreshControl: UIRefreshControl!
@@ -67,11 +72,81 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
-        let myImageUrlString = ("https://i.imgur.com/tGbaZCY.jpg") as String
-        let URLImage = URL(string:myImageUrlString)!
-        cell.photoDescription.text = "This is row \(indexPath.row)"
-        cell.postImages.af_setImage(withURL: URLImage)
+        let post = self.posts[indexPath.row]
+        let summary = post["summary"] as! String
+        let slug = post["slug"] as! String
+        
+        imageDescriptionDisplay = post["caption"] as! String
+        let photos = post["photos"] as! [[String: Any]]
+        let photo = photos[0]
+        
+        //High Resoluation Images Parser
+        let originalImage = photo["original_size"] as! [String: Any]
+        let postURL = originalImage["url"] as! String
+        
+        //Low Resolution Images Parser.
+        let altImage = photo["alt_sizes"] as! [[String: Any]]
+        let lowResURL = altImage[4]
+        let postLowURL = lowResURL["url"] as! String
+        
+        self.postURLLink = postURL;
+        self.slug = slug
+        let smallImageRequest = URLRequest(url: URL(string: postLowURL)!)
+        let largeImageRequest = URLRequest(url: URL(string: postURL)!)
+        
+        cell.photoDescription.text = summary
+//        cell.postImages.setImageWith(URL(string: postLowURL)!)
+        cell.postImages.setImageWith(
+            smallImageRequest,
+            placeholderImage: nil,
+            success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+                
+                // smallImageResponse will be nil if the smallImage is already available
+                // in cache (might want to do something smarter in that case).
+                cell.postImages.alpha = 0.0
+                cell.postImages.image = smallImage;
+                
+                UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                    
+                    cell.postImages.alpha = 1.0
+                    
+                }, completion: { (sucess) -> Void in
+                    
+                    // The AFNetworking ImageView Category only allows one request to be sent at a time
+                    // per ImageView. This code must be in the completion block.
+                    cell.postImages.setImageWith(
+                        largeImageRequest,
+                        placeholderImage: smallImage,
+                        success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+                            
+                            cell.postImages.image = largeImage;
+                            
+                    },
+                        failure: { (request, response, error) -> Void in
+                            // do something for the failure condition of the large image request
+                            // possibly setting the ImageView's image to a default image
+                    })
+                })
+        },
+            failure: { (request, response, error) -> Void in
+                // do something for the failure condition
+                // possibly try to get the large image
+        })
         return cell
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the index path from the cell that was tapped
+        let indexPath = tableView.indexPathForSelectedRow
+        // Get the Row of the Index Path and set as index
+        let index = indexPath?.row
+        // Get in touch with the DetailViewController
+        let detailViewController = segue.destination as! DetailViewController
+        // Pass on the data to the Detail ViewController by setting it's indexPathRow value
+        detailViewController.index = index
+        detailViewController.imageDescriptionDisplay = self.imageDescriptionDisplay
+        detailViewController.postURLLink = self.postURLLink
+        detailViewController.titleSection = self.slug
     }
     
     override func didReceiveMemoryWarning() {

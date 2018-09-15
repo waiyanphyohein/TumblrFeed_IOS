@@ -8,6 +8,7 @@ target 'Tumblr_Feed_Project_IOS' do
   # Pods for Tumblr_Feed_Project_IOS
   pod 'Alamofire', '~>4.4'
   pod 'AlamofireImage'
+ pod 'AFNetworking'
   target 'Tumblr_Feed_Project_IOSTests' do
     inherit! :search_paths
     # Pods for testing
