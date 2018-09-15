@@ -2,13 +2,16 @@ import UIKit
 import AlamofireImage
 import AFNetworking
 
-class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UIScrollViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    var isMoreDataLoading = false
+    var loadingMoreView:LoadingViewClass?
+    let alertController = UIAlertController(title: "Error", message: "Message", preferredStyle: .alert)
+
     // An array of Dictionaries to store data from network requests
     var posts: [[String: Any]] = []
-    
+    var url: URL!;
     var postURLLink: String!;
     var imageDescriptionDisplay: String!;
     var slug: String!;
@@ -19,12 +22,30 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            // handle cancel response here. Doing nothing will dismiss the view.
+        }
+        // add the cancel action to the alertController
+        alertController.addAction(cancelAction)
         
+        // create an OK action
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // handle response here.
+        }
+        // add the OK action to the alert controller
+        alertController.addAction(OKAction)
         // AFNetworking extension to UIImageView that allows
         // specifying a URL for the image
         // Swift 3 should use URL instead of NSURL
         
-
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: LoadingViewClass.defaultHeight)
+        loadingMoreView = LoadingViewClass(frame: frame)
+        loadingMoreView!.isHidden = true
+        tableView.addSubview(loadingMoreView!)
+        
+        var insets = tableView.contentInset
+        insets.bottom += LoadingViewClass.defaultHeight
+        tableView.contentInset = insets
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -35,15 +56,24 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         fetchPhotos()
         
+        
     }
     
     func fetchPhotos() {
         let url = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")!
+        self.url = url
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         session.configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print(error.localizedDescription)
+                self.alertController.message = error.localizedDescription;
+                self.present(self.alertController, animated: true) {
+                    func terminate(){
+                        
+                    }
+                    exit(1);
+                }
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                 
@@ -148,10 +178,56 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
         detailViewController.postURLLink = self.postURLLink
         detailViewController.titleSection = self.slug
     }
+    func loadMoreData() {
+        
+        // ... Create the NSURLRequest (myRequest) ...
+        
+        // Configure session so that completion handler is executed on main UI thread
+        let session = URLSession(configuration: URLSessionConfiguration.default,
+                                 delegate:nil,
+                                 delegateQueue:OperationQueue.main
+        )
+        let task : URLSessionDataTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
+            
+            self.isMoreDataLoading = false
+            
+            // Stop the loading indicator
+            self.loadingMoreView!.stopAnimating()
+            
+            // ... Use the new data to update the data source ...
+            
+            // Reload the tableView now that there is new data
+            self.tableView.reloadData()
+        })
+        task.resume()
+
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                isMoreDataLoading = true
+                
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: LoadingViewClass.defaultHeight)
+                loadingMoreView?.frame = frame
+                loadingMoreView!.startAnimating()
+                
+                // Code to load more results
+                loadMoreData()
+            }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
+    
 }
 
