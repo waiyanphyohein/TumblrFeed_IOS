@@ -41,7 +41,6 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
                 print(error.localizedDescription)
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                print(dataDictionary);
                 
                 // Get posts and store in posts property
                 let responseDictionary = dataDictionary["response"] as! [String: Any]
@@ -67,7 +66,7 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell;
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         let myImageUrlString = ("https://i.imgur.com/tGbaZCY.jpg") as String
         let URLImage = URL(string:myImageUrlString)!
         cell.photoDescription.text = "This is row \(indexPath.row)"

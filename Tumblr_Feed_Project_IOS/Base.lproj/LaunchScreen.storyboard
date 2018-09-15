@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tumblr_180x180.png" translatesAutoresizingMaskIntoConstraints="NO" id="YEB-zm-hb0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tumblr.png" translatesAutoresizingMaskIntoConstraints="NO" id="YEB-zm-hb0">
                                 <rect key="frame" x="140" y="269" width="94" height="87"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tumble Feed" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGc-kb-194">
@@ -50,6 +50,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Tumblr_180x180.png" width="180" height="180"/>
+        <image name="Tumblr.png" width="1024" height="1024"/>
     </resources>
 </document>
