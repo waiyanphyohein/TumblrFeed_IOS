@@ -41,19 +41,18 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
                 print(error.localizedDescription)
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                print(dataDictionary)
+                print(dataDictionary);
                 
                 // Get posts and store in posts property
                 let responseDictionary = dataDictionary["response"] as! [String: Any]
                 self.posts = responseDictionary["posts"] as! [[String: Any]]
-                print(self.posts);
                 // Reload table view after network request data returns
                 self.tableView.reloadData()
                 
                 // Stops refreshControl from spinning 1 second after data returns
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                //DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                     self.refreshControl.endRefreshing()
-                })
+                //})
             }
         }
         task.resume()
@@ -71,8 +70,8 @@ class PhotoViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell;
         let myImageUrlString = ("https://i.imgur.com/tGbaZCY.jpg") as String
         let URLImage = URL(string:myImageUrlString)!
-        cell.PhotoDescription.text = "This is row \(indexPath.row)"
-        cell.TumblrImage.af_setImage(withURL: URLImage)
+        cell.photoDescription.text = "This is row \(indexPath.row)"
+        cell.postImages.af_setImage(withURL: URLImage)
         return cell
     }
     

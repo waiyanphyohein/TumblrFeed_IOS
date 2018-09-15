@@ -9,12 +9,14 @@
 import UIKit
 
 class PhotoCell: UITableViewCell {
-    @IBOutlet weak var TumblrImage: UIImageView!
     
-    @IBOutlet weak var PhotoDescription: UILabel!
+    @IBOutlet weak var postImages: UIImageView!
+    
+    @IBOutlet weak var photoDescription: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        photoDescription.text = "Default"
         // Initialization code
     }
 
